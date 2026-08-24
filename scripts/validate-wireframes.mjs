@@ -14,6 +14,7 @@ expect(count(/class="story"/g) === 4, "사용자 이야기는 사진 인증·전
 expect(count(/class="rail"/g) === 4, "각 사용자 이야기에 가로 레일이 하나씩 있어야 합니다.");
 expect(/사진 1~3장/.test(html), "사진 1~3장 제출 규칙이 없습니다.");
 expect(/data-ai-processing="per-image"/.test(html), "사진별 AI 처리 표식이 없습니다.");
+expect(count(/data-item-results="true"/g) >= 4, "사진별 성공·재인증 결과 화면이 충분하지 않습니다.");
 expect(/data-capability="earn-only"/.test(html), "축제 웹의 적립 전용 표식이 없습니다.");
 expect(/이어하기/.test(html) && /확인/.test(html) && /사용/.test(html), "카카오 링크의 이어하기·확인·사용 흐름이 불완전합니다.");
 expect(/data-stamp-max="3"/.test(html), "스탬프 최대 3개 규칙이 없습니다.");
@@ -23,6 +24,13 @@ expect(html.includes('data-stamp-count="1" data-coupon-visible="false"'), "스�
 expect(html.includes('data-stamp-count="2" data-coupon-visible="false"'), "스탬프 2개일 때 쿠폰이 숨겨져야 합니다.");
 expect(html.includes('data-stamp-count="3" data-coupon-visible="true" data-registration-allowed="false"'), "스탬프 3개일 때 쿠폰 표시와 추가 적립 차단이 필요합니다.");
 expect(/data-frame="retry-source-sheet"/.test(html) && /카메라로 다시 촬영/.test(html) && /사진 보관함에서 선택/.test(html), "인증 실패 뒤 바텀시트 재시도 흐름이 없습니다.");
+expect(/카카오톡 링크 클릭 · 스탬프 3개 전/.test(html), "스탬프 3개 전 화면이 카카오톡 링크 진입임을 밝혀야 합니다.");
+expect(/data-frame="kakao-auth-running-one"/.test(html) && /data-frame="kakao-item-result-failed"/.test(html) && /data-frame="kakao-retry-source-sheet"/.test(html), "카카오 링크 안에 사진 선택·인증·장별 결과·재시도 흐름이 없습니다.");
+expect(/data-frame="phone-confirm-modal"/.test(html) && /이 번호가 맞나요/.test(html), "전화번호 적립 전 확인 모달이 없습니다.");
+expect(!/data-frame="credit-running"|<strong>참여 처리<\/strong>/.test(html), "불필요한 참여 처리 화면이 남아 있습니다.");
+expect(/전에 참여했어도 괜찮아요/.test(html), "재방문 사용자를 안심시키는 첫 화면 안내가 없습니다.");
+expect(count(/class="doll-stamp/g) >= 9 && /<b>\?\?\?<\/b>/.test(html), "스탬프에 인형 그림과 미정 이름 표기가 없습니다.");
+expect(/data-frame="coupon-ticket-modal"/.test(html) && /class="reward-ticket"/.test(html) && /고유번호 · MC-/.test(html), "고유번호가 있는 티켓형 쿠폰 모달이 없습니다.");
 expect(/data-requires-admin-password="true"/.test(html) && /관리자 비밀번호/.test(html), "사용자 휴대폰에서 관리자가 비밀번호를 입력하는 쿠폰 사용 흐름이 없습니다.");
 const afterThree = html.slice(html.indexOf('id="after-three"'));
 expect(!/data-action="continue"/.test(afterThree), "스탬프 3개 완료 뒤에는 이어하기가 없어야 합니다.");
