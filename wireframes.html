@@ -176,7 +176,6 @@
     .bubble { padding: 15px; border-radius: 4px 16px 16px 16px; background: #fff; box-shadow: 0 2px 8px rgb(66 59 12 / 12%); line-height: 1.6; }
     .bubble strong { display: block; margin-bottom: 6px; }
     .bubble-button { display: grid; min-height: 40px; margin-top: 13px; place-items: center; border-radius: 7px; background: #f0f1f3; font-weight: 800; }
-    .secure-bar { display: flex; align-items: center; justify-content: center; gap: 5px; margin: -4px 0 14px; color: var(--green); font-size: .62rem; font-weight: 850; }
     .stamp-card { margin-bottom: 12px; padding: 16px; border-radius: 15px; color: #fff; background: linear-gradient(135deg, #4930a6, #7657df); }
     .stamp-card small { color: rgb(255 255 255 / 75%); }
     .stamp-count { margin: 6px 0 12px; font-size: 2rem; font-weight: 950; letter-spacing: -.05em; }
@@ -197,28 +196,13 @@
     .sheet h3 { margin-bottom: 7px; }
     .sheet p { margin-bottom: 15px; color: var(--muted); }
     .used-stamp { display: inline-block; margin: 14px 0; padding: 8px 14px; border: 2px solid var(--green); border-radius: 5px; color: var(--green); font-size: 1rem; font-weight: 950; transform: rotate(-4deg); }
-
-    .security-box { margin-top: 12px; padding: 14px; border: 1px solid #b7c7e5; border-left: 4px solid var(--blue); border-radius: 9px; background: var(--blue-soft); }
-    .security-box b { display: block; margin-bottom: 4px; color: #1d4f9b; }
-    .security-box p { margin: 0; color: #435a7e; line-height: 1.55; }
-    .url { margin: 12px 0; padding: 10px; overflow: hidden; border: 1px solid var(--line); border-radius: 8px; color: var(--muted); background: #fff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .62rem; text-overflow: ellipsis; white-space: nowrap; }
-
-    .system-flow { display: flex; gap: 56px; min-width: max-content; padding: 6px 0; }
-    .system-card { position: relative; width: 255px; min-height: 195px; padding: 18px; border: 1px solid var(--line); border-top: 5px solid var(--purple); border-radius: 12px; background: #fff; box-shadow: 0 8px 20px rgb(31 38 51 / 8%); }
-    .system-card h3 { margin-bottom: 7px; font-size: .95rem; }
-    .system-card p { color: var(--muted); font-size: .73rem; line-height: 1.55; }
-    .system-card ul { margin: 0; padding-left: 17px; color: #4f5869; font-size: .7rem; line-height: 1.65; }
-    .system-card--ai { border-top-color: var(--blue); }
-    .system-card--unknown { border-top-color: #b78a09; background: #fffdf5; }
-    .system-card--secure { border-top-color: var(--green); }
-
-    .decision-note { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 20px; margin: 28px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
-    .decision-note h2 { margin-bottom: 7px; font-size: 1rem; }
-    .decision-note p { margin-bottom: 0; color: var(--muted); font-size: .8rem; }
-    .unknown-list { margin: 0; padding: 0; list-style: none; }
-    .unknown-list li { padding: 8px 0; border-bottom: 1px solid #eceef2; color: #4e5665; font-size: .75rem; }
-    .unknown-list li:last-child { border-bottom: 0; }
-    .unknown-list b { margin-right: 6px; color: #7b5b00; }
+    .handover-card { display: grid; grid-template-columns: 40px 1fr; gap: 10px; align-items: center; margin-top: 12px; padding: 13px; border: 1px solid #d8dde7; border-left: 4px solid var(--green); border-radius: 10px; background: #fff; }
+    .handover-icon { display: grid; width: 40px; height: 40px; place-items: center; border-radius: 10px; color: var(--green); background: var(--green-soft); font-size: 1.1rem; font-weight: 900; }
+    .handover-card b { display: block; margin-bottom: 3px; font-size: .72rem; }
+    .handover-card p { margin: 0; color: var(--muted); font-size: .62rem; line-height: 1.5; }
+    .password-field { justify-content: center; font-size: 1.15rem; font-weight: 900; letter-spacing: .22em; }
+    .field--error { border-color: var(--red); color: var(--ink); background: #fff; box-shadow: 0 0 0 3px var(--red-soft); }
+    .field-error { margin: 6px 0 0; color: var(--red); font-size: .65rem; font-weight: 800; }
 
     @media (max-width: 760px) {
       .page-head { min-height: 68px; padding: 13px 18px; }
@@ -227,237 +211,164 @@
       .story-head { padding-inline: 18px; }
       .read-hint { display: none; }
       .rail { padding-inline: 22px; }
-      .decision-note { grid-template-columns: 1fr; margin: 22px 18px; }
     }
   </style>
+  <link rel="stylesheet" href="wireframe-shell.css">
+  <script defer src="wireframe-shell.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 이동</a>
-  <header class="page-head">
-    <div class="title-lockup">
-      <span class="title-mark" aria-hidden="true"></span>
-      <div>
-        <h1>멧챠 카멜레온 연결 화면</h1>
-        <p>사진 인증부터 보호 링크의 쿠폰 사용까지</p>
-      </div>
-    </div>
-    <a class="back-link" href="index.html">현재 상태</a>
-  </header>
-
-  <main id="main">
-    <section class="intro" aria-labelledby="intro-title">
-      <div>
-        <h2 id="intro-title">촬영 직후 적립하고, 카카오에서 안전하게 이어갑니다</h2>
-        <p>각 줄을 좌우로 스크롤하면 한 가지 사용자 이야기가 이어집니다. 화면 밖 설명은 고정된 크기로 읽히며, 프레임 안에서는 일반 모바일 화면처럼만 보입니다.</p>
-      </div>
-      <div class="boundary" aria-label="진입점별 기능 경계">
-        <div><span>축제 웹</span><strong>인증 · 적립만</strong></div>
-        <div><span>카카오 링크</span><strong>이어하기 · 확인 · 사용</strong></div>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-1-title" data-surface="festival-web" data-capability="earn-only">
-      <header class="story-head">
-        <div class="story-title"><div><h2 id="story-1-title">축제 웹에서 촬영한 사진을 바로 제출</h2><p>한 번에 사진 1~3장을 고르고, Core는 AI Server에 한 장씩 독립 요청합니다.</p></div></div>
-        <span class="read-hint">가로로 이어보기</span>
+  <main id="main" class="board-scroll">
+    <div class="board">
+      <header class="canvas-overview page-head">
+        <div class="canvas-title-block title-lockup"><h1>멧챠 카멜레온 화면</h1></div>
+        <nav class="canvas-nav" aria-label="화면 바로가기">
+          <a href="#photo-auth">사진 인증</a>
+          <a href="#stamp-credit">전화번호 적립</a>
+          <a href="#before-three">스탬프 3개 전</a>
+          <a href="#after-three">3개 완료 · 쿠폰</a>
+        </nav>
       </header>
-      <div class="rail" tabindex="0" aria-label="첫 참여 사진 제출 화면" data-upload-min="1" data-upload-max="3">
-        <article class="node flow-step" data-frame="festival-home"><p class="frame-label"><strong>축제 웹 진입</strong><span>현장 촬영 직후</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><b>경희대학교 축제</b><span>전체 메뉴</span></div>
-          <div class="hero-card"><span class="tag">현장 이벤트</span><div class="doll-row"><span class="doll">①</span><span class="doll">②</span><span class="doll">③</span></div><strong>멧챠 카멜레온</strong><p>인형을 발견했다면 지금 찍은 사진으로 인증해 보세요.</p></div>
-          <div class="card"><div class="card-title"><span>참여 방법</span><span class="tag tag--purple">사진 1~3장</span></div><p class="small">인형이 잘 보이는 사진을 선택하면 바로 판정해요.</p></div>
-          <div class="bottom-action"><div class="button">사진 인증 시작</div></div>
-        </div></div></article>
 
-        <article class="node flow-step" data-frame="photo-empty"><p class="frame-label"><strong>사진 선택</strong><span>최소 1장 · 최대 3장</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>사진 인증</b><span>도움말</span></div><p class="eyebrow">STEP 1</p><h3>방금 촬영한 사진을<br>선택해 주세요</h3><p class="copy">사진은 1~3장까지 한 번에 제출할 수 있어요.</p>
-          <div class="upload-zone"><div><span class="upload-mark">＋</span><b>카메라 또는 사진 보관함</b><p class="small">JPG · PNG · HEIC</p></div></div>
-          <div class="counter"><span>선택한 사진</span><strong>0 / 3</strong></div>
-          <div class="bottom-action"><div class="button button--disabled">사진을 먼저 선택해 주세요</div></div>
-        </div></div></article>
+      <section class="story" id="photo-auth" aria-labelledby="photo-auth-title" data-surface="festival-web" data-capability="earn-only">
+        <header class="story-head">
+          <div class="story-title"><div><h2 id="photo-auth-title">축제 웹에서 사진을 제출하고 인증</h2><p>처음 방문해도 다시 방문해도 같은 화면에서 시작하며, 한 번에 사진 1~3장을 인증할 수 있습니다.</p></div></div>
+        </header>
+        <div class="rail" tabindex="0" aria-label="축제 웹 사진 인증 화면" data-upload-min="1" data-upload-max="3" data-ai-processing="per-image">
+          <article class="flow-step" data-frame="festival-entry"><p class="frame-label"><strong>사진 인증 시작</strong><span>첫 접속 · 재접속 동일</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><b>경희대학교 축제</b><span>전체 메뉴</span></div>
+            <div class="hero-card"><span class="tag">현장 이벤트</span><div class="doll-row"><span class="doll">①</span><span class="doll">②</span><span class="doll">③</span></div><strong>인형을 찾았나요?</strong><p>방금 찍은 사진으로 스탬프에 도전해 보세요.</p></div>
+            <div class="card"><div class="card-title"><span>사진 선택 안내</span><span class="tag tag--purple">1~3장</span></div><p class="small">인형이 화면 안에 크고 선명하게 보이는 사진이 좋아요.</p></div>
+            <div class="bottom-action"><div class="button">사진 선택하기</div></div>
+          </div></div></article>
 
-        <article class="node flow-step" data-frame="photo-selected"><p class="frame-label"><strong>1~3장 선택 완료</strong><span>각 사진을 개별 판정</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>사진 인증</b><span>도움말</span></div><p class="eyebrow">STEP 1</p><h3>이 사진으로 인증할까요?</h3><p class="copy">사진마다 인형이 충분히 크게 보이는지 확인해 주세요.</p>
-          <div class="photo-grid"><div class="photo">①<em>×</em></div><div class="photo">②<em>×</em></div><div class="photo">③<em>×</em></div></div>
-          <div class="upload-zone" style="min-height:64px;padding:10px"><b>＋ 사진 다시 고르기</b></div>
-          <div class="counter"><span>선택한 사진</span><strong>3 / 3</strong></div>
-          <div class="bottom-action"><div class="button" data-surface="festival-web" data-action="earn">3장 인증하기</div><p class="privacy-note center">사진은 인증 처리 목적으로만 사용돼요.</p></div>
-        </div></div></article>
+          <article class="flow-step" data-frame="photo-selected"><p class="frame-label"><strong>사진 선택</strong><span>2장 선택 · 최대 3장</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>사진 인증</b><span>취소</span></div><h3>인증할 사진을 확인해 주세요</h3><p class="copy">사진마다 인형이 잘 보이는지 확인해 주세요.</p>
+            <div class="photo-grid"><div class="photo">①<em>삭제</em></div><div class="photo">②<em>삭제</em></div><div class="upload-zone" style="min-height:102px;padding:8px"><div><span class="upload-mark" style="margin-bottom:4px">＋</span><span class="small">한 장 더</span></div></div></div>
+            <div class="counter"><span>선택한 사진</span><strong>2 / 3장</strong></div>
+            <div class="bottom-action"><div class="button">2장 인증하기</div></div>
+          </div></div></article>
 
-        <article class="node flow-step" data-frame="verification-running" data-ai-processing="per-image"><p class="frame-label"><strong>인증 중</strong><span>Core API가 장별 요청을 결합</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span></span><b>사진 인증</b><span></span></div><p class="eyebrow">STEP 2</p><h3>인형을 확인하고 있어요</h3><p class="copy">화면을 닫지 말고 잠시만 기다려 주세요.</p>
-          <div class="progress-line"><span></span></div><div class="card">
-            <div class="result-row"><span class="thumb">①</span><span><b>사진 1</b><small>판정 완료</small></span><span class="tag tag--green">완료</span></div>
-            <div class="result-row"><span class="thumb">②</span><span><b>사진 2</b><small>AI Server에 장별 요청</small></span><span class="spinner"></span></div>
-            <div class="result-row"><span class="thumb">③</span><span><b>사진 3</b><small>순서대로 결과 결합</small></span><span class="tag">대기</span></div>
-          </div><div class="lock-note"><b>내부</b><span>브라우저의 사진 제출 대상은 festival-api 하나입니다.</span></div>
-        </div></div></article>
-      </div>
-    </section>
+          <article class="flow-step" data-frame="auth-running"><p class="frame-label"><strong>인증 중</strong><span>선택한 사진을 차례로 확인</span></p><div class="phone"><div class="screen screen--white center">
+            <div class="state-mark state-mark--purple"><span class="spinner" style="width:24px;height:24px;border-color:rgb(255 255 255 / 40%);border-top-color:#fff"></span></div><h3 class="state-title">사진을 확인하고 있어요</h3><p class="state-copy">잠시만 기다려 주세요.<br>이 화면을 그대로 두면 결과가 표시됩니다.</p>
+            <div class="card" style="text-align:left"><div class="card-title"><span>확인 중</span><strong>1 / 2</strong></div><div class="progress-line"><span style="width:50%"></span></div><p class="small" style="margin:0">완료될 때까지 사진을 다시 선택할 필요가 없어요.</p></div>
+          </div></div></article>
 
-    <section class="story" aria-labelledby="story-2-title" data-surface="festival-web" data-capability="earn-only" data-outcome="failure">
-      <header class="story-head"><div class="story-title"><div><h2 id="story-2-title">인증에 실패하면 그 자리에서 다시 촬영</h2><p>원인을 짐작해 단정하지 않고, 다음 행동을 가장 크게 보여줍니다.</p></div></div><span class="read-hint">가로로 이어보기</span></header>
-      <div class="rail" tabindex="0" aria-label="인증 실패와 재촬영 화면">
-        <article class="node flow-step" data-frame="verification-failed"><p class="frame-label"><strong>인증 실패</strong><span>재촬영이 주 행동</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark state-mark--red">!</div><h3 class="state-title">인형을 확인하기 어려워요</h3><p class="state-copy">인형이 화면에 더 크게 보이도록 가까이에서 다시 촬영해 주세요.</p>
-          <div class="error-list"><b>다시 확인할 사진이 있어요</b><p>판정이 어려웠던 사진만 표시하되, 최종 집계 규칙은 정책 확정 후 적용합니다.</p></div>
-          <div class="bottom-action"><div class="button">바로 다시 촬영</div><div class="button button--outline">사진 보관함에서 선택</div></div>
-        </div></div></article>
+          <article class="flow-step" data-frame="auth-failed" data-outcome="failure"><p class="frame-label"><strong>인증 실패</strong><span>인증 중 화면에서 바로 전환</span></p><div class="phone"><div class="screen screen--white center">
+            <div class="state-mark state-mark--red">!</div><h3 class="state-title">사진을 확인하지 못했어요</h3><p class="state-copy">인형이 화면 안에 크게 보이고<br>빛 반사가 적은 사진으로 다시 시도해 주세요.</p>
+            <div class="error-list" style="text-align:left"><b>이렇게 찍어 보세요</b><p>인형 전체가 잘리지 않게 가까이에서 촬영해 주세요.</p></div>
+            <div class="bottom-action"><div class="button">다시 인증하기</div><div class="button button--outline">축제 홈으로</div></div>
+          </div></div></article>
 
-        <article class="node flow-step" data-frame="camera-return"><p class="frame-label"><strong>카메라로 복귀</strong><span>새 화면 탐색 없음</span></p><div class="phone"><div class="screen" style="background:#222;color:#fff">
-          <div class="appbar" style="border:0;color:#fff"><span>취소</span><b style="color:#fff">사진 촬영</b><span></span></div>
-          <div style="display:grid;height:400px;place-items:center;border:1px solid #555;border-radius:14px;background:linear-gradient(160deg,#4e5849,#222b25);text-align:center"><div><div style="font-size:3rem">🧸</div><p style="margin:8px 0;color:#d8ded9">인형 전체가 안내선 안에<br>들어오게 해주세요</p></div></div>
-          <div style="width:62px;height:62px;margin:20px auto;border:5px solid #fff;border-radius:50%;background:#ddd"></div>
-        </div></div></article>
+          <article class="flow-step" data-frame="retry-source-sheet"><p class="frame-label"><strong>다시 인증하기</strong><span>아래에서 올라오는 선택창</span></p><div class="phone"><div class="screen screen--white center">
+            <div class="state-mark state-mark--red">!</div><h3 class="state-title">사진을 확인하지 못했어요</h3><div class="scrim"></div><div class="sheet" style="text-align:left"><h3>사진을 어떻게 가져올까요?</h3><p>현장에서 다시 찍거나 이미 촬영한 사진을 고를 수 있어요.</p><div class="button">카메라로 다시 촬영</div><div class="button button--outline">사진 보관함에서 선택</div><div class="button button--soft">취소</div></div>
+          </div></div></article>
 
-        <article class="node flow-step" data-frame="retry-ready"><p class="frame-label"><strong>재제출 준비</strong><span>새 사진으로 다시 인증</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>사진 인증</b><span></span></div><p class="eyebrow">다시 시도</p><h3>새 사진을 확인해 주세요</h3><p class="copy">이전 실패는 스탬프에 반영되지 않았어요.</p>
-          <div class="photo-grid"><div class="photo">①<em>×</em></div></div><div class="counter"><span>선택한 사진</span><strong>1 / 3</strong></div>
-          <div class="bottom-action"><div class="button">1장 다시 인증하기</div></div>
-        </div></div></article>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-3-title" data-surface="festival-web" data-capability="earn-only" data-outcome="success">
-      <header class="story-head"><div class="story-title"><div><h2 id="story-3-title">성공하면 전화번호로 적립하고 카카오 링크 전송</h2><p>축제 웹은 적립만 완료하며 스탬프 수와 쿠폰을 보여주지 않습니다.</p></div></div><span class="read-hint">가로로 이어보기</span></header>
-      <div class="rail" tabindex="0" aria-label="첫 인증 성공과 적립 화면">
-        <article class="node flow-step" data-frame="verification-success"><p class="frame-label"><strong>인증 성공</strong><span>적립할 번호 입력으로 이동</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark">✓</div><h3 class="state-title">인증에 성공했어요</h3><p class="state-copy">스탬프를 받을 전화번호를 입력해 주세요.</p>
-          <div class="card"><div class="card-title"><span>다음 단계</span><span class="tag tag--purple">적립</span></div><p class="small">스탬프 현황과 쿠폰은 카카오로 보내드리는 보호 링크에서 확인할 수 있어요.</p></div>
-          <div class="bottom-action"><div class="button">전화번호 입력</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="phone-input"><p class="frame-label"><strong>전화번호 입력</strong><span>조회 인증이 아닌 적립 입력</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>스탬프 적립</b><span></span></div><p class="eyebrow">STEP 3</p><h3>카카오를 받을 번호를<br>입력해 주세요</h3><p class="copy">인증한 스탬프를 적립하고, 내역을 볼 수 있는 링크를 보내드려요.</p>
-          <label class="field-label">휴대폰 번호</label><div class="field field--active">010 · 1234 · 5678</div><p class="privacy-note">번호만 입력해서 이전 스탬프나 쿠폰을 조회할 수는 없습니다.</p>
-          <div class="lock-note"><b>보호</b><span>내역은 해당 번호로 전송된 추측 불가 링크에서만 열립니다.</span></div>
-          <div class="bottom-action"><div class="button" data-surface="festival-web" data-action="earn">스탬프 적립하기</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="credit-running"><p class="frame-label"><strong>적립 처리</strong><span>중복 적립 방지</span></p><div class="phone"><div class="screen screen--white center">
-          <div class="state-mark state-mark--purple"><span class="spinner" style="width:24px;height:24px;border-color:rgb(255 255 255 / 40%);border-top-color:#fff"></span></div><h3 class="state-title">스탬프를 적립하고 있어요</h3><p class="state-copy">같은 요청이 다시 전송되어도 한 번만 적립돼요.</p>
-          <div class="card" style="text-align:left"><div class="card-title"><span>카카오 안내 준비</span><span class="tag tag--blue">전송 대기</span></div><p class="small">메시지 발송이 늦어져도 완료된 적립은 유지됩니다.</p></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="credit-done-private"><p class="frame-label"><strong>적립 완료</strong><span>상세를 숨긴 동일한 완료 화면</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark">✓</div><h3 class="state-title">스탬프를 적립했어요</h3><p class="state-copy">카카오 알림톡에서 내 스탬프 현황을 확인해 주세요.</p>
-          <div class="security-box"><b>이 화면에서는 보여주지 않아요</b><p>누적 스탬프 수 · 쿠폰 발급 여부 · 쿠폰 정보</p></div>
-          <div class="bottom-action"><div class="button">축제 웹으로 돌아가기</div><p class="privacy-note center">처음 참여한 번호와 기존 번호 모두 같은 완료 화면을 보여줍니다.</p></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="kakao-message"><p class="frame-label"><strong>카카오 알림톡</strong><span>보호 링크의 소유자에게 전달</span></p><div class="phone"><div class="screen screen--kakao">
-          <div class="kakao-head">카카오톡</div><div class="bubble"><strong>멧챠 카멜레온</strong><p>사진 인증으로 스탬프가 적립되었습니다.</p><p>아래 버튼에서 이어하기와 내역 확인, 쿠폰 사용이 가능합니다.</p><div class="bubble-button">내 스탬프 확인하기</div><p class="small" style="margin:10px 0 0">이 링크를 다른 사람에게 공유하지 마세요.</p></div>
-        </div></div></article>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-4-title" data-surface="kakao-link" data-capability="continue-view-use" data-access="signed-link-only">
-      <header class="story-head"><div class="story-title"><div><h2 id="story-4-title">두 번째부터는 카카오 링크에서 이어하기·확인·사용</h2><p>유효한 보호 링크를 검증한 참여자만 자신의 내역과 쿠폰에 접근합니다.</p></div></div><span class="read-hint">가로로 이어보기</span></header>
-      <div class="rail" tabindex="0" aria-label="카카오 보호 링크 참여자 화면">
-        <article class="flow-step" data-frame="secure-link-check"><p class="frame-label"><strong>보호 링크 확인</strong><span>상세보다 검증이 먼저</span></p><div class="phone"><div class="screen screen--white center">
-          <div class="state-mark state-mark--purple">⌁</div><h3 class="state-title">안전한 링크를 확인하고 있어요</h3><p class="state-copy">유효성·만료·위변조 여부를 확인한 뒤 내 화면을 엽니다.</p>
-          <div class="url">festival.example/metcha/open/8W…qP</div><div class="secure-bar">● 전화번호 없는 추측 불가 링크</div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="participant-hub"><p class="frame-label"><strong>내 스탬프</strong><span>보호 링크에서만 확인</span></p><div class="phone"><div class="screen">
-          <div class="appbar"><b>멧챠 카멜레온</b><span class="tag tag--green">보호됨</span></div><div class="secure-bar">● 내 전용 링크로 접속 중</div>
-          <div class="stamp-card"><small>현재 스탬프</small><div class="stamp-count">3개</div><div class="stamp-row"><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot">·</span><span class="stamp-dot">·</span></div></div>
-          <div class="menu-card" data-surface="kakao-link" data-action="continue"><span class="menu-icon">＋</span><span><b>이어서 인증하기</b><small>새 사진 1~3장 제출</small></span><span>›</span></div>
-          <div class="menu-card" data-surface="kakao-link" data-action="view"><span class="menu-icon">券</span><span><b>내 쿠폰 확인</b><small>사용 가능한 쿠폰 1개</small></span><span>›</span></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="protected-continue"><p class="frame-label"><strong>이어하기</strong><span>전화번호 재입력 없이 같은 참여자</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>이어서 인증하기</b><span></span></div><div class="secure-bar">● 내 스탬프에 바로 적립</div><h3>새로 촬영한 사진을<br>선택해 주세요</h3><p class="copy">사진 1~3장을 제출할 수 있어요.</p>
-          <div class="upload-zone"><div><span class="upload-mark">＋</span><b>카메라 또는 사진 보관함</b><p class="small">성공하면 현재 참여자에게 적립</p></div></div>
-          <div class="bottom-action"><div class="button button--disabled">사진을 먼저 선택해 주세요</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="protected-credit-done"><p class="frame-label"><strong>이어하기 적립 완료</strong><span>보호된 현황이 바로 갱신</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark">✓</div><h3 class="state-title">새 스탬프를 적립했어요</h3><div class="delta">스탬프가 내 참여 내역에 추가됐어요</div>
-          <div class="card"><div class="card-title"><span>다음 행동</span><span class="tag tag--purple">내 화면</span></div><p class="small">내역으로 돌아가거나 계속해서 사진을 인증할 수 있어요.</p></div>
-          <div class="bottom-action"><div class="button" data-surface="kakao-link" data-action="view">내 스탬프 확인</div><div class="button button--outline" data-surface="kakao-link" data-action="continue">한 번 더 이어하기</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="coupon-detail"><p class="frame-label"><strong>쿠폰 확인</strong><span>발급 기준은 별도 확인 필요</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>내 쿠폰</b><span></span></div><div class="secure-bar">● 보호된 참여자 화면</div><div class="coupon"><span class="tag tag--purple">사용 가능</span><h3 style="margin-top:12px">멧챠 카멜레온 리워드</h3><p class="copy">운영 부스에서 직원에게 사용 화면을 보여주세요.</p><div class="coupon-code">METCHA</div><p class="small center">발급 기준 · 만료 정책은 확인 필요</p></div>
-          <div class="bottom-action"><div class="button button--green" data-surface="kakao-link" data-action="use">쿠폰 사용하기</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="coupon-confirm"><p class="frame-label"><strong>사용 재확인</strong><span>실수·캡처 재사용 방지</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>내 쿠폰</b><span></span></div><div class="coupon"><span class="tag tag--purple">사용 가능</span><h3 style="margin-top:12px">멧챠 카멜레온 리워드</h3></div><div class="scrim"></div><div class="sheet"><h3>지금 쿠폰을 사용할까요?</h3><p>사용하면 되돌릴 수 없어요. 직원이 보는 앞에서 눌러 주세요.</p><div class="button button--green" data-surface="kakao-link" data-action="use">사용 확정</div><div class="button button--outline">아직 사용하지 않기</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="coupon-used"><p class="frame-label"><strong>사용 완료</strong><span>Core에서 한 번만 성공</span></p><div class="phone"><div class="screen screen--white center">
-          <div class="state-mark">✓</div><h3 class="state-title">쿠폰을 사용했어요</h3><span class="used-stamp">사용 완료</span><p class="state-copy">같은 쿠폰을 다시 열거나 동시에 눌러도 한 번만 사용됩니다.</p>
-          <div class="card" style="text-align:left"><div class="card-title"><span>사용 시각</span><strong>오후 6:24</strong></div><p class="small">취소·복구 정책은 운영 확정이 필요합니다.</p></div>
-          <div class="bottom-action"><div class="button button--outline">내 스탬프로 돌아가기</div></div>
-        </div></div></article>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-5-title" data-surface="festival-web" data-capability="earn-only">
-      <header class="story-head"><div class="story-title"><div><h2 id="story-5-title">두 번째도 축제 웹으로 들어오면 기존 스탬프에 누적</h2><p>원래 경로를 다시 사용해도 막지 않지만, 축제 웹에서는 여전히 상세를 보여주지 않습니다.</p></div></div><span class="read-hint">가로로 이어보기</span></header>
-      <div class="rail" tabindex="0" aria-label="축제 웹 재참여와 누적 화면">
-        <article class="flow-step" data-frame="repeat-festival-entry"><p class="frame-label"><strong>축제 웹 재참여</strong><span>두 번째 이후도 허용</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><b>경희대학교 축제</b><span>전체 메뉴</span></div><div class="hero-card"><span class="tag">현장 이벤트</span><div class="doll-row"><span class="doll">①</span><span class="doll">②</span><span class="doll">③</span></div><strong>또 발견했나요?</strong><p>카카오 링크가 없어도 축제 웹에서 다시 인증할 수 있어요.</p></div>
-          <div class="bottom-action"><div class="button">사진 인증 시작</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="repeat-phone-input"><p class="frame-label"><strong>같은 번호 입력</strong><span>기존 참여자 원장에 연결</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><span>←</span><b>스탬프 적립</b><span></span></div><div class="state-mark" style="margin-top:8px">✓</div><h3 class="state-title">인증에 성공했어요</h3><label class="field-label">휴대폰 번호</label><div class="field field--active">010 · 1234 · 5678</div>
-          <div class="lock-note"><b>누적</b><span>같은 번호라면 기존 참여자의 스탬프 원장에 추가합니다.</span></div>
-          <div class="bottom-action"><div class="button" data-surface="festival-web" data-action="earn">스탬프 적립하기</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="repeat-private-done"><p class="frame-label"><strong>상세 없는 완료</strong><span>기존 번호 여부도 숨김</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark">✓</div><h3 class="state-title">스탬프를 적립했어요</h3><p class="state-copy">카카오 알림톡의 보호 링크에서 갱신된 현황을 확인해 주세요.</p><div class="security-box"><b>축제 웹은 적립만</b><p>몇 번째 참여인지, 총 스탬프가 몇 개인지, 쿠폰이 생겼는지 알려주지 않아요.</p></div>
-          <div class="bottom-action"><div class="button">축제 웹으로 돌아가기</div></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="repeat-kakao-update"><p class="frame-label"><strong>카카오에서 확인</strong><span>보호 링크로 최신 현황 이동</span></p><div class="phone"><div class="screen screen--kakao">
-          <div class="kakao-head">카카오톡</div><div class="bubble"><strong>스탬프가 새로 적립됐어요</strong><p>축제 웹에서 인증한 결과가 기존 참여 내역에 반영되었습니다.</p><div class="bubble-button">갱신된 내역 확인하기</div><p class="small" style="margin:10px 0 0">전화번호는 링크 주소에 포함되지 않습니다.</p></div>
-        </div></div></article>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-6-title">
-      <header class="story-head"><div class="story-title"><div><h2 id="story-6-title">전화번호·만료 링크·위변조 링크로는 상세 접근 불가</h2><p>전화번호만으로 조회할 수 없고, 인증 실패 상태는 스탬프와 쿠폰의 존재 여부를 구분하지 않는 동일한 화면으로 닫힙니다.</p></div></div><span class="read-hint">가로로 이어보기</span></header>
-      <div class="rail" tabindex="0" aria-label="보호 링크 보안 실패 화면">
-        <article class="flow-step" data-frame="phone-only-blocked"><p class="frame-label"><strong>전화번호만 아는 경우</strong><span>적립은 가능 · 조회는 불가</span></p><div class="phone"><div class="screen screen--white">
-          <div class="appbar"><b>멧챠 카멜레온</b><span></span></div><h3>전화번호로 내역 찾기</h3><div class="field">010 · 1234 · 5678</div><div class="button button--disabled" style="margin-top:10px">조회 기능 없음</div>
-          <div class="security-box"><b>전화번호는 조회 비밀번호가 아니에요</b><p>축제 웹에서는 번호로 적립만 할 수 있고, 내역·쿠폰 조회와 사용은 제공하지 않습니다.</p></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="expired-link"><p class="frame-label"><strong>만료·폐기된 링크</strong><span>상세 노출 없이 실패</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark state-mark--red">×</div><h3 class="state-title">이 링크는 열 수 없어요</h3><p class="state-copy">링크가 만료되었거나 더 이상 유효하지 않습니다.</p><div class="security-box"><b>보호된 정보</b><p>스탬프 수와 쿠폰 존재 여부는 표시하지 않습니다.</p></div>
-          <div class="bottom-action"><div class="button button--outline">축제 웹으로 이동</div><p class="privacy-note center">링크 재발송·교체 절차는 확인 필요</p></div>
-        </div></div></article>
-
-        <article class="flow-step" data-frame="tampered-link"><p class="frame-label"><strong>위변조·추측 링크</strong><span>실패 이유도 최소 공개</span></p><div class="phone"><div class="screen screen--white">
-          <div class="state-mark state-mark--red">!</div><h3 class="state-title">안전하지 않은 접근이에요</h3><p class="state-copy">유효한 카카오 안내에서 다시 접속해 주세요.</p><div class="url">festival.example/metcha/open/000001</div>
-          <div class="lock-note"><b>거부</b><span>추측 가능한 번호·내부 ID와 위변조된 서명으로는 참여자 정보를 찾지 않습니다.</span></div>
-          <div class="bottom-action"><div class="button button--outline">화면 닫기</div></div>
-        </div></div></article>
-      </div>
-    </section>
-
-    <section class="story" aria-labelledby="story-7-title">
-      <header class="story-head"><div class="story-title"><div><h2 id="story-7-title">화면 뒤 요청 경계</h2><p>사용자 제출은 하나지만, Core가 사진을 분리해 AI Server에 전달하고 서비스 상태를 소유합니다.</p></div></div><span class="read-hint">가로로 이어보기</span></header>
-      <div class="rail" tabindex="0" aria-label="내부 서비스 요청 흐름">
-        <div class="system-flow">
-          <article class="system-card"><span class="tag tag--purple">사용자 제출</span><h3>축제 웹 / 보호 링크 웹</h3><p>사진 1~3장과 하나의 멱등 키를 `festival-api`에 제출합니다.</p><ul><li>AI 주소·서명키 없음</li><li>사진 순서 유지</li><li>실패 시 즉시 재촬영</li></ul></article>
-          <article class="system-card"><span class="tag tag--purple">Core</span><h3>festival-api</h3><p>요청을 검증하고 사진을 분리합니다.</p><ul><li>사진 1 · AI 요청 1</li><li>사진 2 · AI 요청 2</li><li>사진 3 · AI 요청 3</li></ul></article>
-          <article class="system-card system-card--ai"><span class="tag tag--blue">장별 판정</span><h3>AI Server</h3><p>요청 하나당 한 장만 판정합니다.</p><ul><li>인형 탐지·판별</li><li>재사용 특징 반환</li><li>전화번호·스탬프 모름</li></ul></article>
-          <article class="system-card system-card--unknown"><span class="tag">확인 필요</span><h3>최종 성공 집계</h3><p>Core가 장별 결과를 결합하지만 집계 규칙은 아직 정하지 않았습니다.</p><ul><li>한 장 성공?</li><li>모든 장 성공?</li><li>인형별 1회 인정?</li></ul></article>
-          <article class="system-card system-card--secure"><span class="tag tag--green">서비스 상태</span><h3>원장 · 보호 링크 · 쿠폰</h3><p>Core가 적립과 접근 권한을 소유합니다.</p><ul><li>중복 적립 방지</li><li>서명·만료·추측 불가 링크</li><li>쿠폰 한 번만 사용</li></ul></article>
+          <article class="flow-step" data-frame="auth-success" data-outcome="success"><p class="frame-label"><strong>인증 성공</strong><span>다음 행동을 바로 안내</span></p><div class="phone"><div class="screen screen--white">
+            <div class="state-mark">✓</div><h3 class="state-title">사진 인증이 끝났어요</h3><p class="state-copy">스탬프를 받을 휴대폰 번호를 입력해 주세요.</p>
+            <div class="card"><div class="card-title"><span>다음 단계</span><span class="tag tag--purple">스탬프 적립</span></div><p class="small">적립 결과와 다음 참여 방법은 카카오 메시지로 보내드려요.</p></div>
+            <div class="bottom-action"><div class="button">전화번호 입력하기</div></div>
+          </div></div></article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <aside class="decision-note" aria-labelledby="unknown-title">
-      <div><h2 id="unknown-title">정책으로 확인한 뒤 화면에 반영할 부분</h2><p>아래 항목은 사용자에게서 아직 결정되지 않았습니다. 이해를 돕기 위한 예시 화면은 있어도 숫자나 규칙을 제품 확정값으로 간주하지 않습니다.</p></div>
-      <ul class="unknown-list"><li><b>확인 필요</b>1~3장 최종 성공 집계</li><li><b>확인 필요</b>스탬프 적립량·상한</li><li><b>확인 필요</b>쿠폰 발급·만료·복구 기준</li><li><b>확인 필요</b>보호 링크 유효기간·재발송</li></ul>
-    </aside>
+      <section class="story" id="stamp-credit" aria-labelledby="stamp-credit-title" data-surface="festival-web" data-capability="earn-only">
+        <header class="story-head"><div class="story-title"><div><h2 id="stamp-credit-title">전화번호를 입력하고 스탬프 적립</h2><p>전화번호는 적립과 카카오 안내에만 사용하며, 축제 웹에서는 보유 개수와 쿠폰을 보여주지 않습니다.</p></div></div></header>
+        <div class="rail" tabindex="0" aria-label="전화번호 입력과 적립 안내 화면">
+          <article class="flow-step" data-frame="phone-input"><p class="frame-label"><strong>전화번호 입력</strong><span>적립을 받을 번호</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>스탬프 적립</b><span></span></div><h3>카카오 메시지를 받을<br>번호를 입력해 주세요</h3><p class="copy">적립 결과와 다음 참여 방법을 이 번호로 보내드려요.</p>
+            <label class="field-label">휴대폰 번호</label><div class="field field--active">010 · 1234 · 5678</div><p class="privacy-note">이 화면에서는 스탬프 수와 쿠폰 정보를 조회할 수 없어요.</p>
+            <div class="bottom-action"><div class="button" data-surface="festival-web" data-action="earn">스탬프 적립하기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="credit-running"><p class="frame-label"><strong>참여 처리</strong><span>기존 참여 여부를 구분하지 않음</span></p><div class="phone"><div class="screen screen--white center">
+            <div class="state-mark state-mark--purple"><span class="spinner" style="width:24px;height:24px;border-color:rgb(255 255 255 / 40%);border-top-color:#fff"></span></div><h3 class="state-title">참여 정보를 확인하고 있어요</h3><p class="state-copy">처리가 끝날 때까지<br>이 화면을 그대로 두어 주세요.</p>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="credit-done-private"><p class="frame-label"><strong>안내 완료</strong><span>처음 · 기존 번호 동일 화면</span></p><div class="phone"><div class="screen screen--white">
+            <div class="state-mark">✓</div><h3 class="state-title">카카오 메시지를 확인해 주세요</h3><p class="state-copy">적립 결과와 다음 참여는<br>도착한 메시지에서 확인할 수 있어요.</p>
+            <div class="card"><div class="card-title"><span>메시지가 늦게 오나요?</span></div><p class="small">잠시 기다린 뒤 카카오톡 알림을 다시 확인해 주세요.</p></div>
+            <div class="bottom-action"><div class="button button--outline">축제 홈으로</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="stamp-message"><p class="frame-label"><strong>카카오 스탬프 안내</strong><span>내 번호로 도착한 메시지</span></p><div class="phone"><div class="screen screen--kakao">
+            <div class="kakao-head">카카오톡</div><div class="bubble"><strong>멧챠 카멜레온</strong><p>사진 인증 결과가 스탬프에 반영되었어요.</p><p>현재 스탬프를 확인하고 이어서 참여해 보세요.</p><div class="bubble-button" data-surface="kakao-link" data-action="view">내 스탬프 보기</div></div>
+          </div></div></article>
+        </div>
+      </section>
+
+      <section class="story" id="before-three" aria-labelledby="before-three-title" data-surface="kakao-link" data-capability="continue-view" data-stamp-max="3">
+        <header class="story-head"><div class="story-title"><div><h2 id="before-three-title">스탬프 3개 전 · 현황 확인과 이어하기</h2><p>쿠폰은 아직 표시하지 않고, 남은 개수와 사진 인증 행동만 분명하게 보여줍니다.</p></div></div></header>
+        <div class="rail" tabindex="0" aria-label="스탬프 3개 전 화면">
+          <article class="flow-step" data-frame="stamp-one" data-stamp-count="1" data-coupon-visible="false"><p class="frame-label"><strong>내 스탬프 · 1개</strong><span>쿠폰 미표시</span></p><div class="phone"><div class="screen">
+            <div class="appbar"><b>멧챠 카멜레온</b><span>닫기</span></div>
+            <div class="stamp-card"><small>모은 스탬프</small><div class="stamp-count">1 / 3</div><div class="stamp-row"><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot">·</span><span class="stamp-dot">·</span></div></div>
+            <h3>두 개 더 모으면 쿠폰이 열려요</h3><p class="copy">다른 인형을 찾았다면 새 사진으로 이어서 인증해 보세요.</p>
+            <div class="bottom-action"><div class="button" data-surface="kakao-link" data-action="continue">이어서 사진 인증하기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="continue-upload-from-one" data-upload-min="1" data-upload-max="2"><p class="frame-label"><strong>이어서 사진 선택</strong><span>1개 보유 · 최대 2장</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>이어서 인증하기</b><span>취소</span></div><h3>새로 촬영한 사진을<br>선택해 주세요</h3><p class="copy">남은 스탬프 수에 맞춰 사진을 최대 2장 선택할 수 있어요.</p>
+            <div class="upload-zone"><div><span class="upload-mark">＋</span><b>카메라 또는 사진 보관함</b><p class="small">남은 스탬프만큼 최대 2장</p></div></div>
+            <div class="bottom-action"><div class="button button--disabled">사진을 먼저 선택해 주세요</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="stamp-two" data-stamp-count="2" data-coupon-visible="false"><p class="frame-label"><strong>내 스탬프 · 2개</strong><span>한 개 남음 · 쿠폰 미표시</span></p><div class="phone"><div class="screen">
+            <div class="appbar"><b>멧챠 카멜레온</b><span>닫기</span></div>
+            <div class="stamp-card"><small>모은 스탬프</small><div class="stamp-count">2 / 3</div><div class="stamp-row"><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot">·</span></div></div>
+            <h3>이제 하나만 더 모으면 돼요</h3><p class="copy">마지막 인형을 찾고 사진을 인증하면 쿠폰이 열립니다.</p>
+            <div class="bottom-action"><div class="button" data-surface="kakao-link" data-action="continue">마지막 스탬프 모으기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="continue-upload-from-two" data-upload-min="1" data-upload-max="1"><p class="frame-label"><strong>마지막 사진 선택</strong><span>2개 보유 · 1장만 선택</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>마지막 스탬프</b><span>취소</span></div><h3>마지막으로 인증할 사진을<br>선택해 주세요</h3><p class="copy">스탬프는 최대 3개이므로 사진 한 장만 선택할 수 있어요.</p>
+            <div class="upload-zone"><div><span class="upload-mark">＋</span><b>카메라 또는 사진 보관함</b><p class="small">사진 1장 선택</p></div></div>
+            <div class="bottom-action"><div class="button button--disabled">사진을 먼저 선택해 주세요</div></div>
+          </div></div></article>
+        </div>
+      </section>
+
+      <section class="story" id="after-three" aria-labelledby="after-three-title" data-surface="kakao-link" data-capability="view-use" data-stamp-max="3">
+        <header class="story-head"><div class="story-title"><div><h2 id="after-three-title">스탬프 3개 완료 · 쿠폰 확인과 현장 사용</h2><p>3개를 모으면 추가 인증 행동은 사라지고 쿠폰이 나타납니다. 현장에서는 사용자의 휴대폰을 받은 관리자가 비밀번호를 입력합니다.</p></div></div></header>
+        <div class="rail" tabindex="0" aria-label="스탬프 3개 완료와 쿠폰 사용 화면">
+          <article class="flow-step" data-frame="stamp-complete" data-stamp-count="3" data-coupon-visible="true" data-registration-allowed="false"><p class="frame-label"><strong>내 스탬프 · 3개 완료</strong><span>추가 인증 없음 · 쿠폰 표시</span></p><div class="phone"><div class="screen">
+            <div class="appbar"><b>멧챠 카멜레온</b><span>닫기</span></div>
+            <div class="stamp-card"><small>모은 스탬프</small><div class="stamp-count">3 / 3</div><div class="stamp-row"><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot stamp-dot--filled">✓</span><span class="stamp-dot stamp-dot--filled">✓</span></div></div>
+            <div class="coupon"><span class="tag tag--purple">사용 가능</span><h3 style="margin:10px 0 5px">현장 리워드 쿠폰</h3><p class="small" style="margin:0">축제 현장 부스에서 사용할 수 있어요.</p></div>
+            <div class="bottom-action"><div class="button button--green" data-surface="kakao-link" data-action="view">쿠폰 열기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="coupon-message"><p class="frame-label"><strong>카카오 쿠폰 안내</strong><span>3개 완료 뒤 도착</span></p><div class="phone"><div class="screen screen--kakao">
+            <div class="kakao-head">카카오톡</div><div class="bubble"><strong>쿠폰이 도착했어요</strong><p>스탬프 3개를 모두 모아 현장 리워드 쿠폰이 발급되었어요.</p><p>부스에 방문한 뒤 아래 링크를 열어 주세요.</p><div class="bubble-button" data-surface="kakao-link" data-action="view">쿠폰 열기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="coupon-handover"><p class="frame-label"><strong>부스에서 쿠폰 열기</strong><span>열린 휴대폰을 관리자에게 전달</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>현장 리워드 쿠폰</b><span></span></div>
+            <div class="coupon"><span class="tag tag--purple">사용 가능</span><h3 style="margin:11px 0 6px">멧챠 카멜레온 리워드</h3><p class="copy" style="margin-bottom:0">현장 부스에서 한 번 사용할 수 있어요.</p><div class="coupon-code">METCHA</div></div>
+            <div class="handover-card"><span class="handover-icon">▣</span><div><b>휴대폰을 관리자에게 건네 주세요</b><p>이 화면을 닫지 않은 상태로 휴대폰째 전달해 주세요.</p></div></div>
+            <div class="bottom-action"><div class="button button--green">관리자 확인 열기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="admin-password"><p class="frame-label"><strong>관리자 비밀번호 입력</strong><span>사용자 휴대폰 안에서 관리자 진행</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>쿠폰 사용 확인</b><span></span></div><span class="tag tag--red">관리자 전용</span><h3 style="margin-top:12px">부스 관리자 비밀번호를<br>입력해 주세요</h3><p class="copy">이제부터 부스 관리자가 직접 진행합니다.</p>
+            <label class="field-label">관리자 비밀번호</label><div class="field field--active password-field">••••••</div><p class="privacy-note">비밀번호는 화면에 표시되지 않습니다.</p>
+            <div class="bottom-action"><div class="button button--green" data-surface="kakao-link" data-action="use" data-requires-admin-password="true">쿠폰 사용 처리</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="admin-password-error"><p class="frame-label"><strong>비밀번호 오류</strong><span>같은 화면에서 다시 입력</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>쿠폰 사용 확인</b><span></span></div><span class="tag tag--red">관리자 전용</span><h3 style="margin-top:12px">관리자 비밀번호를<br>다시 확인해 주세요</h3>
+            <label class="field-label">관리자 비밀번호</label><div class="field field--error password-field">••••••</div><p class="field-error">비밀번호가 맞지 않습니다.</p>
+            <div class="bottom-action"><div class="button button--green">다시 확인</div><div class="button button--outline">쿠폰 화면으로 돌아가기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="coupon-used" data-coupon-state="used"><p class="frame-label"><strong>사용 완료</strong><span>같은 쿠폰은 다시 사용 불가</span></p><div class="phone"><div class="screen screen--white center">
+            <div class="state-mark">✓</div><h3 class="state-title">쿠폰을 사용했어요</h3><span class="used-stamp">사용 완료</span><p class="state-copy">현장 부스에서 사용 처리가 완료되었습니다.</p>
+            <div class="card" style="text-align:left"><div class="card-title"><span>사용 시각</span><strong>오후 6:24</strong></div><p class="small">이 쿠폰은 다시 사용할 수 없어요.</p></div>
+            <div class="bottom-action"><div class="button button--outline">화면 닫기</div></div>
+          </div></div></article>
+        </div>
+      </section>
+    </div>
   </main>
 </body>
 </html>
