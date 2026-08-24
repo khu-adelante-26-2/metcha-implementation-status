@@ -244,9 +244,9 @@
     .reward-ticket--used { filter: grayscale(1); opacity: .68; }
     .ticket-modal { position: absolute; z-index: 6; top: 50%; right: 14px; left: 14px; padding: 13px; border-radius: 20px; background: #f1eefb; box-shadow: 0 22px 52px rgb(0 0 0 / 30%); transform: translateY(-50%); }
     .ticket-modal .reward-ticket { margin-bottom: 11px; }
-    .ticket-admin { padding: 11px; border-radius: 11px; background: #fff; }
-    .ticket-admin .field-label { margin-top: 9px; }
-    .ticket-admin .button { min-height: 42px; margin-top: 9px; }
+    .ticket-use-note { display: grid; gap: 3px; margin-bottom: 9px; padding: 10px; border-radius: 9px; background: #fff; }
+    .ticket-use-note b { font-size: .67rem; }
+    .ticket-use-note span { color: var(--muted); font-size: .58rem; line-height: 1.45; }
     .password-field { justify-content: center; font-size: 1.15rem; font-weight: 900; letter-spacing: .22em; }
     .field--error { border-color: var(--red); color: var(--ink); background: #fff; box-shadow: 0 0 0 3px var(--red-soft); }
     .field-error { margin: 6px 0 0; color: var(--red); font-size: .65rem; font-weight: 800; }
@@ -380,32 +380,6 @@
             <div class="bottom-action"><div class="button" data-surface="kakao-link" data-action="continue">마지막 스탬프 모으기</div></div>
           </div></div></article>
 
-          <article class="flow-step" data-frame="continue-upload-from-two" data-upload-min="1" data-upload-max="1"><p class="frame-label"><strong>카카오 링크 · 마지막 사진</strong><span>2개 보유 · 1장만 선택</span></p><div class="phone"><div class="screen screen--white">
-            <div class="appbar"><span>←</span><b>마지막 스탬프</b><span>취소</span></div><h3>마지막으로 인증할 사진을<br>확인해 주세요</h3><p class="copy">스탬프는 최대 3개이므로 사진 한 장만 선택할 수 있어요.</p>
-            <div class="photo-grid photo-grid--single"><div class="photo">①<em>삭제</em></div></div><div class="counter"><span>선택한 사진</span><strong>1 / 1장</strong></div>
-            <div class="bottom-action"><div class="button">1장 인증하기</div></div>
-          </div></div></article>
-
-          <article class="flow-step" data-frame="kakao-auth-running-two"><p class="frame-label"><strong>카카오 링크 · 인증 중</strong><span>마지막 사진 확인</span></p><div class="phone"><div class="screen screen--white center">
-            <div class="state-mark state-mark--purple"><span class="spinner" style="width:24px;height:24px;border-color:rgb(255 255 255 / 40%);border-top-color:#fff"></span></div><h3 class="state-title">사진을 확인하고 있어요</h3><p class="state-copy">결과가 준비되면<br>사진 항목에 바로 표시됩니다.</p>
-            <div class="card" style="text-align:left"><div class="card-title"><span>확인 중</span><strong>1 / 1</strong></div><div class="progress-line"><span style="width:70%"></span></div></div>
-          </div></div></article>
-
-          <article class="flow-step" data-frame="kakao-item-result-failed" data-outcome="failure" data-item-results="true" data-success-count="0"><p class="frame-label"><strong>카카오 링크 · 사진별 결과</strong><span>사진 1 재인증</span></p><div class="phone"><div class="screen screen--white">
-            <div class="appbar"><span>←</span><b>인증 결과</b><span></span></div><h3>다시 인증할 사진이 있어요</h3><p class="copy">아래 사진에서 바로 다시 인증할 수 있어요.</p>
-            <div class="result-list"><div class="result-row" data-photo-result="failure"><span class="thumb">①</span><span><b>사진 1</b><small>인형이 작거나 흐리게 보여요</small></span><span class="result-status result-status--retry">재인증</span><div class="result-retry-action">이 사진 다시 인증하기</div></div></div>
-          </div></div></article>
-
-          <article class="flow-step" data-frame="kakao-retry-source-sheet"><p class="frame-label"><strong>카카오 링크 · 다시 인증</strong><span>아래에서 올라오는 선택창</span></p><div class="phone"><div class="screen screen--white">
-            <div class="appbar"><span>←</span><b>인증 결과</b><span></span></div><div class="result-list"><div class="result-row" data-photo-result="failure"><span class="thumb">①</span><span><b>사진 1</b><small>인형이 작거나 흐리게 보여요</small></span><span class="result-status result-status--retry">재인증</span><div class="result-retry-action">이 사진 다시 인증하기</div></div></div>
-            <div class="scrim"></div><div class="sheet"><h3>사진 1을 어떻게 가져올까요?</h3><p>새로 촬영하거나 보관함에서 다시 고를 수 있어요.</p><div class="button">카메라로 다시 촬영</div><div class="button button--outline">사진 보관함에서 선택</div><div class="button button--soft">취소</div></div>
-          </div></div></article>
-
-          <article class="flow-step" data-frame="kakao-item-result-complete" data-outcome="success" data-item-results="true" data-success-count="1"><p class="frame-label"><strong>카카오 링크 · 재인증 완료</strong><span>스탬프 1개 적립 가능</span></p><div class="phone"><div class="screen screen--white">
-            <div class="appbar"><span>←</span><b>인증 결과</b><span></span></div><h3>스탬프 1개를 적립할 수 있어요</h3><p class="copy">다시 인증한 사진의 결과를 확인해 주세요.</p>
-            <div class="result-list"><div class="result-row" data-photo-result="success"><span class="thumb">①</span><span><b>사진 1</b><small>스탬프 1개 적립 가능</small></span><span class="result-status result-status--success">성공</span></div></div>
-            <div class="bottom-action"><div class="button" data-surface="kakao-link" data-action="continue" data-stamp-credit-count="1">스탬프 1개 적립하기</div></div>
-          </div></div></article>
         </div>
       </section>
 
@@ -424,14 +398,23 @@
             <div class="bottom-action"><div class="button button--green" data-surface="kakao-link" data-action="view">쿠폰 열기</div></div>
           </div></div></article>
 
-          <article class="flow-step" data-frame="coupon-ticket-modal"><p class="frame-label"><strong>티켓 쿠폰 모달</strong><span>티켓과 관리자 입력을 한 화면에서 진행</span></p><div class="phone"><div class="screen">
+          <article class="flow-step" data-frame="coupon-ticket-modal"><p class="frame-label"><strong>티켓 쿠폰 모달</strong><span>쿠폰 확인 · 관리자 화면으로 이동</span></p><div class="phone"><div class="screen">
             <div class="appbar"><b>멧챠 카멜레온</b><span>닫기</span></div><div class="stamp-card"><small>모은 스탬프</small><div class="stamp-count">3 / 3</div></div>
-            <div class="scrim"></div><div class="ticket-modal"><div class="reward-ticket"><div class="ticket-art"><span>스탬프 완주 리워드</span><b>현장 리워드 티켓</b><div class="ticket-dots"><i></i><i></i><i></i></div></div><div class="ticket-info"><strong>멧챠 카멜레온</strong><span>축제 현장 부스 · 1회 사용</span><small>고유번호 · MC-7F2A-0198</small></div></div><div class="ticket-admin"><span class="tag tag--red">관리자 전용</span><label class="field-label">관리자 비밀번호</label><div class="field field--active password-field">••••••</div><div class="button button--green" data-surface="kakao-link" data-action="use" data-requires-admin-password="true">쿠폰 사용 처리</div></div></div>
+            <div class="scrim"></div><div class="ticket-modal"><div class="reward-ticket"><div class="ticket-art"><span>스탬프 완주 리워드</span><b>현장 리워드 티켓</b><div class="ticket-dots"><i></i><i></i><i></i></div></div><div class="ticket-info"><strong>멧챠 카멜레온</strong><span>축제 현장 부스 · 1회 사용</span><small>고유번호 · MC-7F2A-0198</small></div></div><div class="ticket-use-note"><b>현장 부스에서만 진행해 주세요</b><span>관리자가 쿠폰을 확인한 뒤 다음 화면에서 비밀번호를 입력합니다.</span></div><div class="button button--green" data-destination="admin-coupon-use">관리자 확인 시작</div></div>
           </div></div></article>
 
-          <article class="flow-step" data-frame="coupon-ticket-modal-error"><p class="frame-label"><strong>비밀번호 오류</strong><span>티켓 모달 안에서 다시 입력</span></p><div class="phone"><div class="screen">
-            <div class="appbar"><b>멧챠 카멜레온</b><span>닫기</span></div><div class="stamp-card"><small>모은 스탬프</small><div class="stamp-count">3 / 3</div></div>
-            <div class="scrim"></div><div class="ticket-modal"><div class="reward-ticket reward-ticket--compact"><div class="ticket-art"><span>스탬프 완주 리워드</span><b>현장 리워드 티켓</b><div class="ticket-dots"><i></i><i></i><i></i></div></div><div class="ticket-info"><span>축제 현장 부스 · 1회 사용</span><small>고유번호 · MC-7F2A-0198</small></div></div><div class="ticket-admin"><span class="tag tag--red">관리자 전용</span><label class="field-label">관리자 비밀번호</label><div class="field field--error password-field">••••••</div><p class="field-error">비밀번호가 맞지 않습니다.</p><div class="button button--green" data-surface="kakao-link" data-action="use" data-requires-admin-password="true">다시 확인</div></div></div>
+          <article class="flow-step" data-frame="admin-password"><p class="frame-label"><strong>관리자 사용 확인</strong><span>티켓 모달의 버튼을 누른 다음 화면</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>쿠폰 사용 확인</b><span></span></div><span class="tag tag--red">관리자 전용</span><h3 style="margin-top:12px">쿠폰 정보를 확인해 주세요</h3><p class="copy">고유번호와 사용 가능 상태를 확인한 뒤 관리자 비밀번호를 입력하세요.</p>
+            <div class="reward-ticket reward-ticket--mini"><div class="ticket-info"><strong>현장 리워드 티켓</strong><span>사용 가능 · 1회</span><small>고유번호 · MC-7F2A-0198</small></div></div>
+            <label class="field-label">관리자 비밀번호</label><div class="field field--active password-field">••••••</div>
+            <div class="bottom-action"><div class="button button--green" data-surface="kakao-link" data-action="use" data-requires-admin-password="true">쿠폰 사용 처리</div><div class="button button--outline">쿠폰으로 돌아가기</div></div>
+          </div></div></article>
+
+          <article class="flow-step" data-frame="admin-password-error"><p class="frame-label"><strong>비밀번호 오류</strong><span>관리자 화면에서 바로 다시 입력</span></p><div class="phone"><div class="screen screen--white">
+            <div class="appbar"><span>←</span><b>쿠폰 사용 확인</b><span></span></div><span class="tag tag--red">관리자 전용</span><h3 style="margin-top:12px">비밀번호를 다시 확인해 주세요</h3><p class="copy">쿠폰은 아직 사용 처리되지 않았습니다.</p>
+            <div class="reward-ticket reward-ticket--mini"><div class="ticket-info"><strong>현장 리워드 티켓</strong><span>사용 가능 · 1회</span><small>고유번호 · MC-7F2A-0198</small></div></div>
+            <label class="field-label">관리자 비밀번호</label><div class="field field--error password-field">••••••</div><p class="field-error">비밀번호가 맞지 않습니다.</p>
+            <div class="bottom-action"><div class="button button--green" data-surface="kakao-link" data-action="use" data-requires-admin-password="true">다시 확인</div><div class="button button--outline">쿠폰으로 돌아가기</div></div>
           </div></div></article>
 
           <article class="flow-step" data-frame="coupon-used" data-coupon-state="used"><p class="frame-label"><strong>사용 완료</strong><span>티켓 사용 완료 · 재사용 불가</span></p><div class="phone"><div class="screen screen--white center">
