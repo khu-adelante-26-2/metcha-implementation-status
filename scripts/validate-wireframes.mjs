@@ -38,6 +38,7 @@ const ticketModalStart = html.indexOf('data-frame="coupon-ticket-modal"');
 const ticketModalEnd = html.indexOf('data-frame="admin-password"');
 const ticketModal = ticketModalStart >= 0 && ticketModalEnd > ticketModalStart ? html.slice(ticketModalStart, ticketModalEnd) : "";
 expect(/data-destination="admin-coupon-use">관리자 확인 시작/.test(ticketModal) && !/관리자 비밀번호|data-action="use"/.test(ticketModal), "티켓 모달은 관리자 확인 시작만 제공해야 합니다.");
+expect(/휴대폰을 관리자에게 건네 주세요/.test(ticketModal) && /관리자가 이 휴대폰에서/.test(ticketModal), "티켓 모달에서 휴대폰을 관리자에게 전달하도록 명확히 안내해야 합니다.");
 expect(/data-frame="admin-password"/.test(html) && /data-requires-admin-password="true"/.test(html), "별도 관리자 비밀번호 입력 화면이 필요합니다.");
 expect(!/ticket-barcode/.test(html), "티켓에는 바코드를 두지 않습니다.");
 expect(/data-frame="coupon-used-reentry"[^>]*data-coupon-state="used"/.test(html) && /이미 사용한 쿠폰이에요/.test(html), "사용 완료 뒤 같은 링크로 재접속한 화면이 없습니다.");
