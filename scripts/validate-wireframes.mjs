@@ -15,6 +15,8 @@ expect(count(/class="rail"/g) === 4, "각 사용자 이야기에 가로 레일�
 expect(/사진 1~3장/.test(html), "사진 1~3장 제출 규칙이 없습니다.");
 expect(/data-ai-processing="per-image"/.test(html), "사진별 AI 처리 표식이 없습니다.");
 expect(count(/data-item-results="true"/g) >= 4, "사진별 성공·재인증 결과 화면이 충분하지 않습니다.");
+expect(count(/class="result-retry-action"/g) >= 3, "실패 사진 카드마다 재인증 버튼이 필요합니다.");
+expect(/data-stamp-credit-count="1">스탬프 1개 적립하기/.test(html) && /data-stamp-credit-count="2">스탬프 2개 적립하기/.test(html), "성공 사진 수와 일치하는 스탬프 적립 버튼이 없습니다.");
 expect(/data-capability="earn-only"/.test(html), "축제 웹의 적립 전용 표식이 없습니다.");
 expect(/이어하기/.test(html) && /확인/.test(html) && /사용/.test(html), "카카오 링크의 이어하기·확인·사용 흐름이 불완전합니다.");
 expect(/data-stamp-max="3"/.test(html), "스탬프 최대 3개 규칙이 없습니다.");
@@ -32,6 +34,14 @@ expect(/전에 참여했어도 괜찮아요/.test(html), "재방문 사용자를
 expect(count(/class="doll-stamp/g) >= 9 && /<b>\?\?\?<\/b>/.test(html), "스탬프에 인형 그림과 미정 이름 표기가 없습니다.");
 expect(/data-frame="coupon-ticket-modal"/.test(html) && /class="reward-ticket"/.test(html) && /고유번호 · MC-/.test(html), "고유번호가 있는 티켓형 쿠폰 모달이 없습니다.");
 expect(/data-requires-admin-password="true"/.test(html) && /관리자 비밀번호/.test(html), "사용자 휴대폰에서 관리자가 비밀번호를 입력하는 쿠폰 사용 흐름이 없습니다.");
+const ticketModalStart = html.indexOf('data-frame="coupon-ticket-modal"');
+const ticketModalEnd = html.indexOf('data-frame="coupon-ticket-modal-error"');
+const ticketModal = ticketModalStart >= 0 && ticketModalEnd > ticketModalStart ? html.slice(ticketModalStart, ticketModalEnd) : "";
+expect(/관리자 비밀번호/.test(ticketModal) && /data-requires-admin-password="true"/.test(ticketModal), "티켓 모달 안에 관리자 비밀번호 입력과 사용 버튼이 함께 있어야 합니다.");
+expect(!/ticket-barcode|data-frame="admin-password"/.test(html), "바코드나 별도 관리자 비밀번호 화면을 두지 않습니다.");
+expect(/data-frame="coupon-used-reentry"[^>]*data-coupon-state="used"/.test(html) && /이미 사용한 쿠폰이에요/.test(html), "사용 완료 뒤 같은 링크로 재접속한 화면이 없습니다.");
+expect(/스탬프를 모으던 같은 (카카오 )?링크/.test(html), "3개 완료가 기존 카카오 링크의 상태 전환임을 설명해야 합니다.");
+expect(/data-destination="student-council-booth">총학생회 부스 위치 보기/.test(html), "3개 완료 티켓 아래에 총학생회 부스 위치 버튼이 필요합니다.");
 const afterThree = html.slice(html.indexOf('id="after-three"'));
 expect(!/data-action="continue"/.test(afterThree), "스탬프 3개 완료 뒤에는 이어하기가 없어야 합니다.");
 expect(!/(보호 링크 확인|보호됨|전화번호·만료 링크|위변조·추측 링크|화면 뒤 요청 경계|정책으로 확인한 뒤)/.test(html), "사용자에게 불필요한 보안·시스템 메타 화면이 남아 있습니다.");
