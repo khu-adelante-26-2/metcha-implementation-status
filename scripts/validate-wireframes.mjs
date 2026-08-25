@@ -13,6 +13,7 @@ expect(count(/data-frame=/g) >= 16, "모바일 화면이 16개 이상이어야 �
 expect(count(/class="story"/g) === 4, "사용자 이야기는 사진 인증·전화번호 적립·3개 전·3개 완료의 4개여야 합니다.");
 expect(count(/class="rail"/g) === 4, "각 사용자 이야기에 가로 레일이 하나씩 있어야 합니다.");
 expect(/사진 1~3장/.test(html), "사진 1~3장 제출 규칙이 없습니다.");
+expect(/data-sticker-count="5"/.test(html) && /data-sticker-design-count="5"/.test(html) && /쿠옹이 스티커 5개/.test(html), "서로 다른 디자인의 쿠옹이 스티커 5개 안내가 없습니다.");
 expect(/data-ai-processing="per-image"/.test(html), "사진별 AI 처리 표식이 없습니다.");
 expect(count(/data-item-results="true"/g) >= 3, "사진별 성공·재인증 결과 화면이 충분하지 않습니다.");
 expect(count(/class="result-retry-action"/g) >= 2, "실패 사진 카드마다 재인증 버튼이 필요합니다.");
@@ -31,7 +32,7 @@ expect(!/data-frame="continue-upload-from-two"|data-frame="kakao-auth-running-tw
 expect(/data-frame="phone-confirm-modal"/.test(html) && /이 번호가 맞나요/.test(html), "전화번호 적립 전 확인 모달이 없습니다.");
 expect(!/data-frame="credit-running"|<strong>참여 처리<\/strong>/.test(html), "불필요한 참여 처리 화면이 남아 있습니다.");
 expect(/전에 참여했어도 괜찮아요/.test(html), "재방문 사용자를 안심시키는 첫 화면 안내가 없습니다.");
-expect(count(/class="doll-stamp/g) >= 9 && /<b>\?\?\?<\/b>/.test(html), "스탬프에 인형 그림과 미정 이름 표기가 없습니다.");
+expect(count(/class="sticker-stamp/g) >= 9 && /class="sticker-figure sticker-figure--empty"/.test(html), "스탬프에 쿠옹이 스티커 디자인과 미획득 표기가 없습니다.");
 expect(/data-frame="coupon-ticket-modal"/.test(html) && /class="reward-ticket"/.test(html) && /고유번호 · MC-/.test(html), "고유번호가 있는 티켓형 쿠폰 모달이 없습니다.");
 expect(/data-requires-admin-password="true"/.test(html) && /관리자 비밀번호/.test(html), "사용자 휴대폰에서 관리자가 비밀번호를 입력하는 쿠폰 사용 흐름이 없습니다.");
 const ticketModalStart = html.indexOf('data-frame="coupon-ticket-modal"');
@@ -41,6 +42,7 @@ expect(/data-destination="admin-coupon-use">관리자 확인 시작/.test(ticket
 expect(/휴대폰을 관리자에게 건네 주세요/.test(ticketModal) && /관리자가 이 휴대폰에서/.test(ticketModal), "티켓 모달에서 휴대폰을 관리자에게 전달하도록 명확히 안내해야 합니다.");
 expect(/data-frame="admin-password"/.test(html) && /data-requires-admin-password="true"/.test(html), "별도 관리자 비밀번호 입력 화면이 필요합니다.");
 expect(!/ticket-barcode/.test(html), "티켓에는 바코드를 두지 않습니다.");
+expect(!/인형|doll-/.test(html), "이전 인형 배치 개념이 남아 있습니다.");
 expect(/data-frame="coupon-used-reentry"[^>]*data-coupon-state="used"/.test(html) && /이미 사용한 쿠폰이에요/.test(html), "사용 완료 뒤 같은 링크로 재접속한 화면이 없습니다.");
 expect(/스탬프를 모으던 같은 (카카오 )?링크/.test(html), "3개 완료가 기존 카카오 링크의 상태 전환임을 설명해야 합니다.");
 expect(/data-destination="student-council-booth">총학생회 부스 위치 보기/.test(html), "3개 완료 티켓 아래에 총학생회 부스 위치 버튼이 필요합니다.");
@@ -57,4 +59,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`PASS: ${count(/data-frame=/g)}개 화면 · 4개 사용자 이야기 · 스탬프 3개 상한 · 관리자 비밀번호 쿠폰 사용`);
+console.log(`PASS: ${count(/data-frame=/g)}개 화면 · 4개 사용자 이야기 · 서로 다른 쿠옹이 스티커 5개 · 스탬프 3개 상한 · 관리자 비밀번호 쿠폰 사용`);
