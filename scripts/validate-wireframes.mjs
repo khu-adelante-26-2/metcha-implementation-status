@@ -13,7 +13,7 @@ expect(count(/data-frame=/g) >= 16, "모바일 화면이 16개 이상이어야 �
 expect(count(/class="story"/g) === 4, "사용자 이야기는 사진 인증·전화번호 적립·3개 전·3개 완료의 4개여야 합니다.");
 expect(count(/class="rail"/g) === 4, "각 사용자 이야기에 가로 레일이 하나씩 있어야 합니다.");
 expect(/사진 1~3장/.test(html), "사진 1~3장 제출 규칙이 없습니다.");
-expect(/data-sticker-count="5"/.test(html) && /data-sticker-design-count="5"/.test(html) && /쿠옹이 스티커 5개/.test(html), "서로 다른 디자인의 쿠옹이 스티커 5개 안내가 없습니다.");
+expect(/data-sticker-count="5"/.test(html) && /data-sticker-design-count="5"/.test(html) && /data-sticker-designs-unique="true"/.test(html) && /디자인이 다른 쿠옹이 스티커 5개/.test(html), "각각 고유한 디자인의 서로 다른 쿠옹이 스티커 5개 안내가 없습니다.");
 expect(/data-ai-processing="per-image"/.test(html), "사진별 AI 처리 표식이 없습니다.");
 expect(count(/data-item-results="true"/g) >= 3, "사진별 성공·재인증 결과 화면이 충분하지 않습니다.");
 expect(count(/class="result-retry-action"/g) >= 2, "실패 사진 카드마다 재인증 버튼이 필요합니다.");
@@ -59,4 +59,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`PASS: ${count(/data-frame=/g)}개 화면 · 4개 사용자 이야기 · 서로 다른 쿠옹이 스티커 5개 · 스탬프 3개 상한 · 관리자 비밀번호 쿠폰 사용`);
+console.log(`PASS: ${count(/data-frame=/g)}개 화면 · 4개 사용자 이야기 · 각각 고유한 디자인의 서로 다른 쿠옹이 스티커 5개 · 스탬프 3개 상한 · 관리자 비밀번호 쿠폰 사용`);
